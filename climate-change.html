@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change in Antarctica</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Climate Change</h1>
+            <p>Antarctica's Role in Global Warming</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="climate.html">Climate</a></li>
+                <li><a href="climate-change.html" class="active">Climate Change</a></li>
+                <li><a href="ozone.html">Ozone Hole</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="content-section">
+            <h2>Antarctica's Changing Climate</h2>
+            <img src="Image/ice loss.jpeg" alt="Antarctic ice loss graph" class="full-width">
+            
+            <div class="change-facts">
+                <div class="change-fact">
+                    <i class="fas fa-thermometer-three-quarters"></i>
+                    <h3>Temperature Rise</h3>
+                    <p>West Antarctica has warmed by 2.4°C (4.3°F) since 1950s</p>
+                </div>
+                <div class="change-fact">
+                    <i class="fas fa-water"></i>
+                    <h3>Ice Loss</h3>
+                    <p>Lost 3 trillion tons of ice since 1992</p>
+                </div>
+                <div class="change-fact">
+                    <i class="fas fa-arrow-up"></i>
+                    <h3>Sea Level</h3>
+                    <p>Contributed 14mm to global sea level since 1979</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2>Key Impacts</h2>
+            <div class="impacts-grid">
+                <div class="impact-card">
+                    <img src="Image/glaicer.jpeg" alt="Thwaites Glacier">
+                    <h4>Glacier Retreat</h4>
+                    <p>Thwaites Glacier losing 50 billion tons of ice annually</p>
+                </div>
+                <div class="impact-card">
+                    <img src="Image/larsen.jpeg" alt="Larsen Ice Shelf">
+                    <h4>Ice Shelf Collapse</h4>
+                    <p>Larsen B shelf disintegrated in 2002</p>
+                </div>
+                <div class="impact-card">
+                    <img src="Image/krill.jpeg" alt="Antarctic krill">
+                    <h4>Ecosystem Changes</h4>
+                    <p>Krill populations declining by 80% since 1970s</p>
+                </div>
+            </div>
+            
+            <h3>Projected Sea Level Rise</h3>
+            <div class="chart-container">
+                <canvas id="seaLevelChart"></canvas>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2>Scientific Research</h2>
+            <img src="Image/driling ice core.jpeg" alt="Ice core drilling" class="float-right">
+            
+            <p>Antarctic research provides crucial climate data:</p>
+            <ul>
+                <li>Ice cores reveal 800,000 years of climate history</li>
+                <li>Satellite monitoring tracks ice sheet changes</li>
+                <li>Ocean sensors measure warming Southern Ocean</li>
+                <li>Atmospheric studies reveal CO₂ increases</li>
+            </ul>
+            
+            <div class="research-stations">
+                <h4>Key Research Stations</h4>
+                <div class="stations-grid">
+                    <div class="station">
+                        <img src="Image/south.jpg" alt="Amundsen-Scott Station">
+                        <p>Amundsen-Scott (South Pole)</p>
+                    </div>
+                    <div class="station">
+                        <img src="Image/mcmurdo.jpeg" alt="McMurdo Station">
+                        <p>McMurdo (USA)</p>
+                    </div>
+                    <div class="station">
+                        <img src="Image/Vostok_Station_.png" alt="Vostok Station">
+                        <p>Vostok (Russia)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <!-- Same footer as index.html -->
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Sea level chart
+        const seaLevelCtx = document.getElementById('seaLevelChart').getContext('2d');
+        const seaLevelChart = new Chart(seaLevelCtx, {
+            type: 'bar',
+            data: {
+                labels: ['1990-2000', '2000-2010', '2010-2020', '2020-2030 (projected)', '2030-2040 (projected)'],
+                datasets: [{
+                    label: 'Antarctic Contribution to Sea Level Rise (mm)',
+                    data: [0.4, 0.8, 1.2, 2.0, 3.5],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Antarctic Contribution to Global Sea Level Rise'
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Millimeters'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antarctic Biodiversity</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Advanced Design Styles */
+        :root {
+            --primary: #1a5276;
+            --secondary: #2980b9;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --highlight: #f1c40f;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0 0;
+            opacity: 0.9;
+        }
+        
+        nav {
+            background-color: rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--highlight);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 100%;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .content-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        h2 i {
+            color: var(--secondary);
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .float-right {
+            float: right;
+            margin: 0 0 1rem 2rem;
+            max-width: 40%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .full-width {
+            width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Biodiversity Grid */
+        .biodiversity-grid, .species-grid, .conservation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .bio-card, .species-card, .conservation-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .bio-card:hover, .species-card:hover, .conservation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .bio-card img, .species-card img, .conservation-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .bio-card h4, .species-card h4, .conservation-card h4 {
+            margin: 1rem;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .bio-card p, .species-card p, .conservation-card p {
+            margin: 0 1rem 1rem;
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+        
+        /* Species Details */
+        .species-details {
+            padding: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .species-details p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .species-details strong {
+            color: var(--primary);
+        }
+        
+        .adaptations-box, .note-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .adaptations-box h3, .note-box h3 {
+            margin-top: 0;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .adaptations-box ul {
+            padding-left: 1.5rem;
+        }
+        
+        .adaptations-box li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .note-box {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .note-box i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-top: 0.2rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 0;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--light);
+            margin-top: 0;
+            font-size: 1.2rem;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            background-color: rgba(0,0,0,0.2);
+        }
+        
+        .footer-bottom a {
+            color: var(--highlight);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .float-right {
+                float: none;
+                margin: 0 0 1rem 0;
+                max-width: 100%;
+            }
+            
+            .biodiversity-grid, .species-grid, .conservation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Antarctic Wildlife</h1>
+            <p>Life in the Extreme</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="geography.html">Geography</a></li>
+                <li><a href="climate.html">Climate</a></li>
+                <li><a href="biodiversity.html" class="active">Biodiversity</a></li>
+                <li><a href="exploration.html">Exploration</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="content-section">
+            <h2><i class="fas fa-mountain"></i> Terrestrial Life</h2>
+            
+            <p class="intro-text">Despite temperatures that can plunge below -60°C, Antarctica hosts surprisingly diverse terrestrial ecosystems in its ice-free areas, showcasing nature's remarkable adaptability.</p>
+            
+            <div class="biodiversity-grid">
+                        <!-- Moss Card -->
+                <div class="bio-card">
+                    <img src="Image/moss.jpeg" alt="Antarctic moss">
+                    <h4>Mosses</h4>
+                    <p>100+ species forming Antarctica's only "forests"</p>
+                    <div class="species-details">
+                        <p>Antarctic mosses represent the most complex plant life on the continent, with species like <em>Schistidium antarctici</em> and <em>Bryum pseudotriquetrum</em> forming lush green cushions in protected areas. These bryophytes survive through remarkable adaptations including antifreeze proteins, desiccation tolerance, and UV-protective pigments. Moss banks grow extremely slowly (1-2mm annually) but can accumulate over centuries, creating peat-like deposits up to 3 meters deep. During the brief summer, they photosynthesize at temperatures just above freezing, while winter survival involves complete metabolic shutdown. Some species can regenerate after being frozen for 1,500 years in permafrost. Moss banks create crucial microhabitats for invertebrates and serve as sensitive indicators of climate change, with their distribution closely tied to water availability from snowmelt and penguin-derived nutrients.</p>
+                    </div>
+                </div>
+                <div class="bio-card">
+                    <img src="Image/lichen.jpeg" alt="Antarctic lichen">
+                    <h4>Lichens</h4>
+                    <p>400+ species, some over 5,000 years old</p>
+                    <div class="species-details">
+                        <p>Antarctic lichens are among the most resilient organisms on Earth, with over 400 species thriving in the continent's harshest environments. These symbiotic associations between fungi and algae exhibit extraordinary adaptations including the production of antifreeze proteins that prevent ice crystal formation in their cells. Lichens can survive complete desiccation, entering a dormant state when water is unavailable, and rapidly reviving when moisture returns. As primary colonizers, they play a crucial role in soil formation through chemical weathering of rocks. Their slow growth rate—often less than 1mm per year—means large specimens may be thousands of years old, making them living records of Antarctic climate history. Some species like Usnea antarctica form intricate branching structures, while crustose lichens adhere tightly to rock surfaces, creating colorful patches in the otherwise monochromatic landscape.</p>
+                    </div>
+                </div>
+
+                <div class="bio-card">
+                    <img src="Image/mites.jpeg" alt="Antarctic mites">
+                    <h4>Microarthropods</h4>
+                    <p>Mites and springtails in moss beds</p>
+                    <div class="species-details">
+                        <p>The Antarctic mite Nanorchestes antarcticus represents one of the continent's most complex terrestrial animals, measuring less than 1mm in length. These microscopic arthropods survive extreme cold through supercooling—preventing ice formation in their bodies even at temperatures below -30°C. They produce glycerol as a natural antifreeze and can endure being frozen solid for extended periods. Found primarily in moss beds and algal mats, these mites play a vital role as decomposers, breaking down organic matter and recycling nutrients in the nutrient-poor Antarctic soils. Their life cycles are synchronized with the brief Antarctic summer, completing development during the few weeks when temperatures rise above freezing. Despite their small size, these mites form complex predator-prey relationships with other microarthropods, creating miniature ecosystems in moss cushions where they find shelter from the harsh winds and temperature fluctuations.</p>
+                    </div>
+                </div>
+
+                <div class="bio-card">
+                    <img src="Image/neutro.jpeg" alt="Nematode worms">
+                    <h4>Microscopic Life</h4>
+                    <p>Nematodes, tardigrades, and microbes</p>
+                    <div class="species-details">
+                        <p>Antarctic nematodes like Panagrolaimus davidi exemplify extreme survival capabilities, enduring conditions that would be lethal to most organisms. These microscopic worms employ cryptobiosis—a state of suspended animation where metabolic activity becomes undetectable—to survive complete dehydration and freezing. Some species can remain in this state for decades, reviving when conditions improve. In Antarctic soils, nematodes occupy various trophic levels, with some species feeding on bacteria, others on fungi, and some acting as predators of other microscopic animals. Their presence indicates ecosystem health, as they're often the most complex organisms in the simplest Antarctic food webs. Tardigrades, or "water bears," share these extreme survival traits, capable of withstanding radiation, vacuum, and temperatures near absolute zero. Together with diverse microbial communities, these microscopic life forms create complex soil ecosystems in Antarctica's ice-free areas.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="adaptations-box">
+                <h3><i class="fas fa-snowflake"></i> Extreme Adaptations</h3>
+                <ul>
+                    <li><strong>Antifreeze proteins</strong> - Prevent ice crystal formation in cells</li>
+                    <li><strong>Cryptobiosis</strong> - Metabolic suspension during harsh conditions</li>
+                    <li><strong>Melanin-rich pigmentation</strong> - Protects against UV radiation and absorbs heat</li>
+                    <li><strong>Slow metabolism</strong> - Conserves energy in nutrient-poor environments</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2><i class="fas fa-water"></i> Marine Ecosystems</h2>
+            <img src="Image/marine.webp" alt="Antarctic marine life" class="full-width">
+            
+            <p class="intro-text">The Southern Ocean's rich waters support one of Earth's most productive marine ecosystems, with unique species adapted to the frigid environment.</p>
+            
+            <div class="marine-species">
+                <h3>Key Species</h3>
+                <div class="species-grid">
+                    <div class="species-card">
+                        <img src="Image/peng.jpg" alt="Emperor penguin">
+                        <h4>Emperor Penguin</h4>
+                        <p>Only penguin that breeds in Antarctic winter</p>
+                        <div class="species-details">
+                            <p>The emperor penguin (Aptenodytes forsteri) is Antarctica's most iconic bird, perfectly adapted to the continent's extreme conditions. Standing up to 1.2 meters tall and weighing up to 45kg, they're the largest penguin species. Their dense plumage provides insulation against -60°C temperatures and 200km/h winds, while a 3cm thick layer of blubber offers additional protection. Emperor penguins are remarkable divers, capable of reaching depths over 500m and holding their breath for more than 20 minutes to hunt fish, squid, and krill. Their most extraordinary behavior is the winter breeding cycle—males incubate a single egg on their feet for two months in complete darkness and bitter cold, without eating, while females forage at sea. The species' survival strategy depends on social thermoregulation, with thousands of birds huddling together in constantly rotating formations to share warmth. Climate change now threatens their sea-ice breeding platforms, making them vulnerable to population declines.</p>
+                        </div>
+                    </div>
+
+                    <div class="species-card">
+                        <img src="Image/krill.jpeg" alt="Antarctic krill">
+                        <h4>Antarctic Krill</h4>
+                        <p>Keystone species of the Southern Ocean</p>
+                        <div class="species-details">
+                            <p>Antarctic krill (Euphausia superba) form the foundation of the Southern Ocean ecosystem, with an estimated biomass of 500 million tons—one of Earth's most abundant animal species. These small, shrimp-like crustaceans grow to about 6cm long and live in massive swarms that can stretch for kilometers, visible from space. Krill produce bioluminescence and possess specialized filtering appendages to feed on phytoplankton. Their life cycle is closely tied to sea ice, with larvae feeding on algae growing beneath winter ice. Krill contain antifreeze proteins and can reduce their metabolism during winter months. As the primary food source for whales, seals, penguins, and fish, krill populations directly affect the entire Antarctic food web. Commercial fishing for krill (used in omega-3 supplements and aquaculture feed) has raised conservation concerns, as climate change may already be reducing krill populations in key regions of the Southern Ocean.</p>
+                        </div>
+                    </div>
+
+                    <div class="species-card">
+                        <img src="Image/leopard a.jpeg" alt="Leopard seal">
+                        <h4>Leopard Seal</h4>
+                        <p>Apex predator of the Southern Ocean</p>
+                        <div class="species-details">
+                            <p>The leopard seal (Hydrurga leptonyx) is Antarctica's most formidable marine predator, reaching 3.5m in length and 600kg in weight. Named for its spotted coat, this solitary hunter has a reptilian-like head and an exceptionally wide gape, equipped with specialized teeth for filtering krill and interlocking canines for grasping larger prey. Unlike other seals, leopard seals specialize in hunting warm-blooded prey including penguins and other seal species, though krill constitutes a significant part of their diet. They employ unique hunting techniques—ambushing penguins at the ice edge or catching them in open water with violent shakes to strip the skin and feathers. Leopard seals are also known for their haunting underwater vocalizations, which may play a role in communication or hunting. As apex predators, they help regulate penguin and seal populations, though their interactions with humans are rare but occasionally aggressive, making them one of Antarctica's most feared yet fascinating species.</p>
+                        </div>
+                    </div>
+
+                    <div class="species-card">
+                        <img src="Image/tootfish.jpeg" alt="Antarctic toothfish">
+                        <h4>Antarctic Toothfish</h4>
+                        <p>Deep-water predator</p>
+                        <div class="species-details">
+                            <p>The Antarctic toothfish (Dissostichus mawsoni), sometimes marketed as "Chilean sea bass," is a remarkable deep-water predator that thrives in the permanently cold (-2°C) waters surrounding Antarctica. Growing up to 2m long and 150kg, these slow-moving fish dominate the deep-sea ecosystem below 300m. Their blood contains special antifreeze glycoproteins that prevent ice crystal formation, allowing survival in subzero waters. Toothfish are opportunistic feeders, consuming fish, squid, and even smaller toothfish. Their life history includes a lengthy maturation (10-15 years) and potential lifespan exceeding 50 years. This longevity makes them vulnerable to overfishing, despite CCAMLR management measures. Toothfish play a crucial ecological role as both predator and prey—adults are eaten by sperm whales and colossal squid, while juveniles fall prey to seals and penguins. Their adaptation to extreme cold comes at the cost of extremely slow metabolism and growth, making population recovery from overexploitation particularly challenging.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2><i class="fas fa-shield-alt"></i> Conservation Challenges</h2>
+            <div class="conservation-grid">
+                <div class="conservation-card">
+                    <img src="Image/CCAMLR.png" alt="CCAMLR map">
+                    <h4>Protected Areas</h4>
+                    <p>CCAMLR manages Southern Ocean fisheries</p>
+                    <div class="species-details">
+                        <p>The Commission for the Conservation of Antarctic Marine Living Resources (CCAMLR), established in 1982, represents one of the most innovative approaches to ecosystem-based management in international waters. Comprising 26 member nations, CCAMLR's mandate extends beyond single-species management to consider the entire Southern Ocean ecosystem. Its most significant achievement includes the establishment of large-scale Marine Protected Areas (MPAs), such as the Ross Sea MPA—the world's largest at 1.55 million km². CCAMLR employs precautionary catch limits for krill and toothfish fisheries, requiring scientific observers on all fishing vessels. The organization faces ongoing challenges in balancing conservation with increasing fishing pressure, particularly as krill fisheries expand to meet demand for omega-3 supplements. Climate change adds complexity, as warming waters and sea ice reduction alter marine ecosystems faster than management measures can adapt. CCAMLR's consensus-based decision-making, while ensuring broad participation, sometimes slows critical conservation actions.</p>
+                    </div>
+                </div>
+
+                <div class="conservation-card">
+                    <img src="Image/krillfishing.jpeg" alt="Krill fishing">
+                    <h4>Overfishing</h4>
+                    <p>Krill fisheries threaten base of food chain</p>
+                    <div class="species-details">
+                        <p>Antarctic krill fishing has grown significantly since the 1970s, with annual catches now approaching 300,000 tons—primarily for omega-3 supplements and aquaculture feed. While this represents a small fraction of the estimated 500 million ton biomass, fishing is concentrated in critical foraging areas near the Antarctic Peninsula, where penguins and whales depend on predictable krill swarms. Industrial fishing vessels use continuous pumping systems that can process 1,000 tons per day, potentially disrupting the natural swarm structure that predators rely on. Climate change compounds these impacts, as warming waters may already be reducing krill populations in key regions. CCAMLR has implemented measures like small-scale management units and temporal closures, but enforcement remains challenging in remote waters. Emerging technologies like DNA tracking help monitor krill product origins, while some manufacturers now commit to only using krill from well-managed fisheries, reflecting growing consumer awareness of Antarctic conservation issues.</p>
+                    </div>
+                </div>
+
+                <div class="conservation-card">
+                    <img src="Image/Antarctica-midge-.jpg" alt="Invasive species">
+                    <h4>Invasive Species</h4>
+                    <p>Non-native species arriving with humans</p>
+                    <div class="species-details">
+                        <p>Antarctica's isolation once provided natural protection against invasive species, but increasing human activity has broken this barrier. The flightless midge Eretmoptera murphyi, accidentally introduced from South Georgia, has established populations on Signy Island, where it outcompetes native invertebrates. The annual bluegrass Poa annua now grows near research stations, potentially displacing native Antarctic hairgrass. More concerning are microscopic invaders—pathogens like avian cholera threaten penguin colonies, while soil microbes alter nutrient cycling in delicate terrestrial ecosystems. Invasion pathways include ship ballast water, cargo supplies, tourist clothing, and even fresh food imports. The Antarctic Treaty System's Protocol on Environmental Protection requires strict biosecurity measures, but compliance varies. Researchers now employ techniques like hot-water boot washes and clothing vacuuming to reduce transfer risks. Climate warming accelerates the threat, as formerly inhospitable areas become suitable for non-native species, potentially transforming Antarctica's unique ecosystems.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note-box">
+                <i class="fas fa-info-circle"></i>
+                <p>The Antarctic Treaty System's Protocol on Environmental Protection (1991) designates Antarctica as a "natural reserve devoted to peace and science," with strict regulations on human activities.</p>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About This Project</h3>
+                <p>An educational resource about Antarctic ecosystems and conservation</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="climate-change.html">Climate Change</a></li>
+                    <li><a href="research.html">Current Research</a></li>
+                    <li><a href="glossary.html">Scientific Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Credits</h3>
+                <p>Images courtesy of NSF, British Antarctic Survey, and NOAA</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Antarctic Biodiversity Project | <a href="privacy.html">Privacy Policy</a></p>
+        </div>
+    </footer>
+</body>
+</html>

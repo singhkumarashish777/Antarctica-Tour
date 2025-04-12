@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate of Antarctica</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Antarctic Climate</h1>
+            <p>The Coldest, Driest, Windiest Continent</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="geography.html">Geography</a></li>
+                <li><a href="geology.html">Geology</a></li>
+                <li><a href="climate.html" class="active">Climate</a></li>
+                <li><a href="biodiversity.html">Biodiversity</a></li>
+                <li><a href="exploration.html">Exploration</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="content-section">
+            <h2>Polar Climate Characteristics</h2>
+            <img src="Image/surfes.png" alt="Antarctica temperature map" class="full-width">
+            
+            <div class="climate-facts">
+                <div class="climate-fact">
+                    <i class="fas fa-temperature-low"></i>
+                    <div>
+                        <h3>Temperature</h3>
+                        <p>Average: -49°C (-56°F)</p>
+                        <p>Record low: -89.2°C (-128.6°F) at Vostok Station</p>
+                    </div>
+                </div>
+                <div class="climate-fact">
+                    <i class="fas fa-wind"></i>
+                    <div>
+                        <h3>Wind</h3>
+                        <p>Katabatic winds up to 320 km/h (200 mph)</p>
+                        <p>Average wind speed: 37 km/h (23 mph)</p>
+                    </div>
+                </div>
+                <div class="climate-fact">
+                    <i class="fas fa-tint"></i>
+                    <div>
+                        <h3>Precipitation</h3>
+                        <p>Interior: &lt;50 mm/year (polar desert)</p>
+                        <p>Coast: 200-400 mm/year (mostly snow)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2>Seasonal Variations</h2>
+            <div class="seasons-grid">
+                <div class="season-card">
+                    <img src="Image/summer.webp" alt="Antarctic summer">
+                    <h3>Summer (Nov-Feb)</h3>
+                    <ul>
+                        <li>24-hour daylight</li>
+                        <li>Coastal temps: -5°C to +5°C (23°F to 41°F)</li>
+                        <li>Primary research season</li>
+                    </ul>
+                </div>
+                <div class="season-card">
+                    <img src="Image/winter.jpg" alt="Antarctic winter">
+                    <h3>Winter (Mar-Oct)</h3>
+                    <ul>
+                        <li>24-hour darkness</li>
+                        <li>Temps drop below -60°C (-76°F)</li>
+                        <li>Minimal personnel remain</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>Temperature Comparison</h3>
+            <div class="chart-container">
+                <canvas id="tempChart"></canvas>
+            </div>
+        </section>
+        
+        <section class="content-section">
+            <h2>Climate Phenomena</h2>
+            <div class="phenomena-grid">
+                <div class="phenomenon-card">
+                    <img src="Image/kabatic wind.jpg" alt="Katabatic winds">
+                    <h4>Katabatic Winds</h4>
+                    <p>Gravity-driven winds flowing from high interior to coast</p>
+                </div>
+                <div class="phenomenon-card">
+                    <img src="Image/diamond dust.jpg" alt="Diamond dust">
+                    <h4>Diamond Dust</h4>
+                    <p>Ice crystals forming in clear air at very low temps</p>
+                </div>
+                <div class="phenomenon-card">
+                    <img src="Image/halo-optical.webp" alt="Ice halos">
+                    <h4>Ice Halos</h4>
+                    <p>Optical phenomena caused by ice crystals in the air</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <!-- Same footer as index.html -->
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Temperature chart
+        const tempCtx = document.getElementById('tempChart').getContext('2d');
+        const tempChart = new Chart(tempCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [
+                    {
+                        label: 'Vostok Station (°C)',
+                        data: [-32, -45, -57, -64, -66, -67, -68, -69, -68, -63, -52, -38],
+                        borderColor: 'rgb(75, 192, 192)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                        tension: 0.3
+                    },
+                    {
+                        label: 'McMurdo Station (°C)',
+                        data: [-3, -6, -14, -19, -21, -22, -24, -25, -24, -18, -9, -4],
+                        borderColor: 'rgb(255, 99, 132)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Average Monthly Temperatures'
+                    },
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Temperature (°C)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
